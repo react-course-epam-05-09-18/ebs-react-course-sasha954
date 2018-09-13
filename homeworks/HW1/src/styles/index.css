@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.custom-btn-color {
+    background-color: deepskyblue;
+    border-color: deepskyblue;
+    color: #fff;
+}
+
+.custom-btn-color:hover {
+    background-color: #0592c1;
+    border-color: #0592c1;
+    color: #fff;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.justify-content-evenly{
+    justify-content: space-evenly;
+}
+.justify-content-center {
+    justify-content: center;
+}
