@@ -22,6 +22,11 @@ export class InlineMultipleList extends React.Component {
             chosenElemItems: null,
             chosenElemSelected: null
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    handleChange(event) {
+        this.setState({value: event.target.value});
     }
     
     renderSelectedItem = () => {
@@ -38,7 +43,7 @@ export class InlineMultipleList extends React.Component {
         const itemValue = e.target.value;
             
         this.setState({
-            chosenElem: itemValue
+            chosenElemItems: itemValue
         });
     }
         
@@ -51,7 +56,7 @@ export class InlineMultipleList extends React.Component {
     }   
           
     moveToSelectedItem = () => {
-        const elem = this.state.chosenElem;
+        const elem = this.state.chosenElemItems;
         const to = this.state.selected;
         const from = this.state.items;
         if(elem !== null) {
@@ -62,7 +67,7 @@ export class InlineMultipleList extends React.Component {
            
         }
     }
-    
+   
      moveFromSelectedItem = () => {
         const elem = this.state.chosenElemSelected;
         const from = this.state.selected;
@@ -80,7 +85,8 @@ export class InlineMultipleList extends React.Component {
          this.setState({
             selected: rightArray.sort(),
             items: letfArray.sort(),
-            chosenElem: null
+            chosenElemItems: null,
+            chosenElemSelected: null
         });
     }
     
@@ -101,7 +107,7 @@ export class InlineMultipleList extends React.Component {
         return (<FormGroup row>
             <Label for={inputId} sm={2}>{labelValue}</Label>
             <Col sm={5}>
-                <Input type="select" name={inputName} id={inputId} multiple>
+                <Input type="select" id={inputId} multiple>
                     {this.renderAllItem()}
                 </Input>
             </Col>
@@ -110,7 +116,7 @@ export class InlineMultipleList extends React.Component {
                 <Button className="custom-btn-color" onClick={this.moveFromSelectedItem} style={btnMarginStyle}>&laquo;</Button>
             </Col>
             <Col sm={4}>
-            <Input type="select" name={inputName} id={inputId} multiple>
+            <Input type="select" value={this.state.selected} onChange={this.handleChange} name={inputName} id={inputId} multiple>
                 {this.renderSelectedItem()}
             </Input>
             </Col>
