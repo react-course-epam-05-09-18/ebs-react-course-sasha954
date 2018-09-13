@@ -11,30 +11,111 @@ export const FormElementGroup = (props) => {
            </FormGroup>);
 }
 
-export const InlineMultipleList = (props) => {
-    const btnMarginStyle = {
-        margin: "5px 0"
+export class InlineMultipleList extends React.Component {
+    constructor(props) {
+        super(props);
+        const allItems = ['one', 'two', 'three', 'four', 'five'];
+        const selectedItems = [];
+        this.state = {
+            items: allItems.sort(),
+            selected: selectedItems,
+            chosenElemItems: null,
+            chosenElemSelected: null
+        };
     }
-    return (<FormGroup row>
-                <Label for={props.inputId} sm={2}>{props.labelValue}</Label>
-                <Col sm={5}>
-                    <Input type="select" name={props.inputName} id={props.inputId} multiple>
-                        <option>1</option>
-                        <option>3</option>
-                    </Input>
-                </Col>
-                <Col sm={1}>
-                    <Button className="custom-btn-color" style={btnMarginStyle}>&raquo;</Button>{' '}
-                    <Button className="custom-btn-color" style={btnMarginStyle}>&laquo;</Button>{' '}
-                </Col>
-                <Col sm={4}>
-                    <Input type="select" name={props.inputName} id={props.inputId} multiple>
-                        <option>2</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </Input>
-                </Col>
-            </FormGroup>)
+    
+    renderSelectedItem = () => {
+        const selectedItem = this.state.selected;
+        return selectedItem.map((elem, index) => <option key={elem} onClick={this.selectFromSelectedItems}>{elem}</option>);
+    }
+    
+    renderAllItem = () => {
+        const allItems = this.state.items;
+        return allItems.map((elem, index) => <option key={elem} onClick={this.selectFromItems}>{elem}</option>);
+    }
+                            
+    selectFromItems = (e) => {
+        const itemValue = e.target.value;
+            
+        this.setState({
+            chosenElem: itemValue
+        });
+    }
+        
+     selectFromSelectedItems = (e) => {
+        const itemValue = e.target.value;
+            
+        this.setState({
+            chosenElemSelected: itemValue
+        });
+    }   
+          
+    moveToSelectedItem = () => {
+        const elem = this.state.chosenElem;
+        const to = this.state.selected;
+        const from = this.state.items;
+        if(elem !== null) {
+            this.removeFromArray(from, elem);
+
+            to.push(elem);
+            this.setListState(from, to)
+           
+        }
+    }
+    
+     moveFromSelectedItem = () => {
+        const elem = this.state.chosenElemSelected;
+        const from = this.state.selected;
+        const to = this.state.items;
+        if(elem !== null) {
+            this.removeFromArray(from, elem);
+
+            to.push(elem);
+            this.setListState(to, from)  
+        }
+    }
+    
+    
+    setListState = (letfArray, rightArray) => {
+         this.setState({
+            selected: rightArray.sort(),
+            items: letfArray.sort(),
+            chosenElem: null
+        });
+    }
+    
+   removeFromArray = (array, elem) => {
+        const position = array.indexOf(elem)
+        array.splice(position, 1);  
+   } 
+   
+    render() {
+        const btnMarginStyle = {
+            margin: "5px 0"
+        };
+        const {
+            inputId,
+            labelValue,
+            inputName
+        } = this.props;
+        return (<FormGroup row>
+            <Label for={inputId} sm={2}>{labelValue}</Label>
+            <Col sm={5}>
+                <Input type="select" name={inputName} id={inputId} multiple>
+                    {this.renderAllItem()}
+                </Input>
+            </Col>
+            <Col sm={1}>
+                <Button className="custom-btn-color" onClick={this.moveToSelectedItem} style={btnMarginStyle}>&raquo;</Button>
+                <Button className="custom-btn-color" onClick={this.moveFromSelectedItem} style={btnMarginStyle}>&laquo;</Button>
+            </Col>
+            <Col sm={4}>
+            <Input type="select" name={inputName} id={inputId} multiple>
+                {this.renderSelectedItem()}
+            </Input>
+            </Col>
+        </FormGroup>)
+    }
 }
 
 FormElementGroup.propTypes = {
