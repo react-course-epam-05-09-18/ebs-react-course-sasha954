@@ -12,12 +12,8 @@ export class InlineMultipleList extends React.Component {
             chosenElemItems: null,
             chosenElemSelected: null
         };
-        this.handleChange = this.handleChange.bind(this);
     }
-    
-    handleChange(event) {
-        this.setState({value: event.target.value});
-    }
+
     
     renderSelectedItem = () => {
         const selectedItem = this.state.selected;
@@ -106,7 +102,7 @@ export class InlineMultipleList extends React.Component {
                 <Button className="custom-btn-color" onClick={this.moveFromSelectedItem} style={btnMarginStyle}>&laquo;</Button>
             </Col>
             <Col sm={4}>
-            <Input type="select" value={this.state.selected} onChange={this.handleChange} name={inputName} id={inputId} multiple>
+            <Input type="select" name={inputName}  id={inputId} multiple>
                 {this.renderSelectedItem()}
             </Input>
             </Col>
