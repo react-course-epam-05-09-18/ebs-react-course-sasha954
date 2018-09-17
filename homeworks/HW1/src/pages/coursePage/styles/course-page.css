@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+.custom-form-group{
+    width: 80%;
+}
+
+.custom-form-group>input {
+    width: 100%!important;
+}
+
+.search-form {
+    margin-bottom: 50px;
+}
+.courses-item {
+    width: 100%;
+    position: relative;
+    margin: 30px 0;
+    border: 1px solid #cecece;
+    padding: 1em;
+    box-shadow: 0px 0px 10px #a7a6a6;
+}
+
+.course-item__header {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.fz-1_2rem {
+    font-size: 1.2rem;
+}
+.courses-item h3 {
+    max-width: 60%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.courses-item h3, 
+.courses-item h4 {
+    display: inline-flex;
+    margin-right: 5rem;
+    margin-bottom: 0;;
+    font-family: 'Poiret One';
+    font-weight: bold;
+}
+.courses-item h4:last-child {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.course-btn-wrapper {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+
+.course-btn {
+    background-color: deepskyblue;
+    border-color: deepskyblue;
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin: 5px;
+    border-radius: 5px;
+    transition: .2s
+}
+
+.course-btn:hover {
+    background-color: #0592c1;
+    border-color: #0592c1;
+    color: #fff;
+    text-decoration: none;
+    transition: .2s
+}
