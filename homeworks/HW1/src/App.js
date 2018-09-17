@@ -1,17 +1,20 @@
 import React from 'react'
+import {BrowserRouter} from 'react-router-dom';
 
-import Header from './Header'
-import Footer from './Footer'
+import {Header} from './components/header/Header'
+import {Footer} from './components/footer/Footer'
+import {Pages} from './components/router/Pages'
 
-class Navigation extends React.Component {
+export default class App extends React.Component {
     render() {
         return(
-            <div className="body">
-                <Header/>   
-                <Footer/>   
-            </div>
+            <BrowserRouter>
+                <div className="body">
+                        <Header/> 
+                        <Pages />
+                        <Footer/>   
+                </div>
+            </BrowserRouter> 
         )
     }
 }
-
-export default Navigation;

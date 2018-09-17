@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.css';
-import Navigation from './App';
-import registerServiceWorker from './registerServiceWorker';
+import App from './App';
 
 
-ReactDOM.render(<Navigation />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(<App />, document.getElementById('root'));

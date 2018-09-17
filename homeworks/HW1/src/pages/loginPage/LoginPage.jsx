@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container, Button, Form, Col, Row} from 'reactstrap';
-import {FormElementGroup} from './FormElement';
+import {FormElementGroup} from '../../components/FormElementGroup';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
     render() {
         return(
            <Container>
@@ -13,11 +13,9 @@ class LoginPage extends React.Component {
                        <FormElementGroup inputId='password' inputName="password" inputType="password" inputPlaceholer="Enter your password!" labelValue="Password*"/>
                        <Button className="custom-btn-color" type="submit">Sign in</Button>
                    </Form>
-                     </Col>
+                 </Col>
                </Row>
            </Container>
         );
     }
 }
-
-export default LoginPage;
