@@ -3,7 +3,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import {Header} from './components/header/Header'
 import {Footer} from './components/footer/Footer'
-import {Pages} from './components/router/Pages'
+import Pages from './components/router/Pages'
 
 export default class App extends React.Component {
     render() {
@@ -14,7 +14,8 @@ export default class App extends React.Component {
                         <Pages />
                         <Footer/>   
                 </div>
-            </BrowserRouter> 
+            </BrowserRouter>
+             
         )
     }
 }
