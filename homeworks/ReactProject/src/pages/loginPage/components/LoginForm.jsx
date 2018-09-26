@@ -2,6 +2,8 @@ import React from 'react'
 import {Button, Form} from 'reactstrap';
 import {FormElementGroup} from '../../../components/FormElementGroup';
 
+
+
 export class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -39,9 +41,7 @@ export class LoginForm extends React.Component {
     render() {
         const {errors, login, password, submitForm, onChangeHandler} = this.state;
         return (<React.Fragment>
-            {this.isAuthenticated() 
-                    ? <Redirect to={{pathname: '/courses'}}/> 
-                    :(<Form onSubmit={submitForm}>
+            <Form onSubmit={submitForm}>
                         <FormElementGroup 
                         inputId="login"
                         inputName="login" 
@@ -64,7 +64,7 @@ export class LoginForm extends React.Component {
                         onBlur={this.onBlur}
                         onChange={onChangeHandler}/>
                         <Button className="custom-btn-color" type="submit">Sign in</Button>
-                    </Form>)}
+                    </Form>
             </React.Fragment>
         );
     };

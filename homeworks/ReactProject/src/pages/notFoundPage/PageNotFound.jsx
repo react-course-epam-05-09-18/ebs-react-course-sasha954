@@ -1,5 +1,5 @@
 import React from 'react'
 
-export const PageNotFound = (props) => {
-    return <h2>404! Page not found.</h2>
+export const PageNotFound = () => {
+    return <h2 className="text-center">404! Page not found.</h2>
 }

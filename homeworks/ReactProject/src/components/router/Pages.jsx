@@ -2,21 +2,20 @@ import React from 'react';
 import {Switch} from 'react-router';
 import {Route} from 'react-router-dom';
 
-import { LoginPage } from '../../pages/loginPage/LoginPage'
-import { CoursesPage } from '../../pages/coursePage/CoursesPage'
-import { CourseManipulatePage } from '../../pages/editCoursePage/CourseManipulatePage'
-import { PageNotFound } from '../../pages/notFoundPage/PageNotFound'
-import PrivateCourses from '../hoc/PrivateCourses'
+import {PrivateRoute} from './PrivateRoute';
+import {LoginPage, 
+        CoursesPageWithData,
+        CourseManipulatePage, 
+        PageNotFound} from '../../pages';
 
-export default () => {
+export const Pages = (props) => {
     return( <Switch>
-                <Route exact path="/" component={CoursesPage}/>
-                    <Route path="/login" component={LoginPage}/>
-                    <Route exact path="/courses" component={PrivateCourses(CoursesPage)}/>
-                    <Route path="/courses/add" component={CourseManipulatePage}/>
-                    <Route path="/courses/:id" component={CourseManipulatePage}/>
+                <PrivateRoute path="/" component={CoursesPageWithData}/>
+                <Route path="/login" component={LoginPage}/>
+                <PrivateRoute exact path="/courses"  component={CoursesPageWithData}/>
+                <PrivateRoute path="/courses/add" component={CourseManipulatePage}/>
+                <PrivateRoute path="/courses/:id" component={CourseManipulatePage}/>
                 <Route component={PageNotFound}/>
             </Switch>
     );
 } 
-

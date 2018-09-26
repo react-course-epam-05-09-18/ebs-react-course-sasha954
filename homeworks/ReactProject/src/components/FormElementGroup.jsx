@@ -13,7 +13,7 @@ export class FormElementGroup extends React.Component {
                labelValue, 
                onBlur, 
                onChange, 
-               errors
+               error
               } = this.props;
         return(
             <FormGroup row>
@@ -22,11 +22,11 @@ export class FormElementGroup extends React.Component {
                     <Input type={inputType} 
                     name={inputName} 
                     onBlur={onBlur} 
-                    className={errors && 'is-invalid'} 
+                    className={error && 'is-invalid'} 
                     id={inputId} 
                     onChange={onChange}
                     placeholder={inputPlaceholer}/>
-                    {errors && <div className="invalid-feedback">Put {errors}.</div>}
+                    {error && <div className="invalid-feedback">Put {error}.</div>}
                 </Col>
             </FormGroup>
         );
@@ -39,5 +39,8 @@ FormElementGroup.propTypes = {
     inputType: PropTypes.string.isRequired,
     inputName: PropTypes.string.isRequired,
     inputPlaceholer : PropTypes.string,
-    labelValue: PropTypes.string.isRequired
+    labelValue: PropTypes.string.isRequired,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    error: PropTypes.string
 }

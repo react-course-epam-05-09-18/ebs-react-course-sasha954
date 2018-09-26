@@ -48,7 +48,6 @@ export class LoginPage extends React.Component {
     }
     
     
-    
     isAuthenticated = () => {
         const token = localStorage.getItem('token');
         return token !== null && token.length > 10;
@@ -62,7 +61,7 @@ export class LoginPage extends React.Component {
                  <Col sm={{size:8, offset:2}}>
                      { isAuth 
                          ? <Redirect to={{pathname:'/courses'}}/> 
-                         : <LoginForm onChangeHandler={this.onChangeHandler} onSubmitForm={this.onSubmitForm} />}
+                         : <LoginForm onChangeHandler={this.onChangeHandler} isAuth={this.isAuthenticated} onSubmitForm={this.onSubmitForm} />}
                  </Col>
                </Row>
            </Container>

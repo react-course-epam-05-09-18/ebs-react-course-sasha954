@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, FormGroup, Label, Col, Input} from 'reactstrap';
+import PropTypes from 'prop-types';
 
 export class InlineMultipleList extends React.Component {
     constructor(props) {
@@ -108,4 +109,10 @@ export class InlineMultipleList extends React.Component {
             </Col>
         </FormGroup>)
     }
+}
+
+InlineMultipleList.propTypes = {
+    inputId: PropTypes.string.isRequired,
+    inputName: PropTypes.string.isRequired,
+    labelValue: PropTypes.string.isRequired,
 }

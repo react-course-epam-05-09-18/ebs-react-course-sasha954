@@ -15,7 +15,7 @@ export class CourseItem extends React.Component {
             <Row className="courses-item">
                <Col sm={10} className="courses-item__content">
                     <Title label={course.title} duration={course.duration} courseDate={course.date}/>
-                    <Content content={course.content}/>
+                    <Content>{course.content}</Content>
                 </Col>
                 <Col sm={2} className="course-btn-wrapper">
                     <CourseButton btnLabel="Edit course"/>

@@ -1,12 +1,12 @@
-import React from 'react'
-import {withState, withHandlers, compose} from 'recompose';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import {CourseItem} from './CourseItem'
+import {CourseItem} from './CourseItem';
 
-export class CourseItemListComponent extends React.Component {
+export class CourseItemList extends React.Component {
     
     renderCourses = () => {
-        return this.props.courses.map((elem,index) => <CourseItem key={index} element={elem}/>);
+        return this.props.courses.map((elem,index) => <CourseItem key={index} element={elem}/>); 
     }
                            
     render() {
@@ -18,11 +18,6 @@ export class CourseItemListComponent extends React.Component {
     };
 }
     
-const coursesFromStorage = compose(
-  withState('setCourses', 'setCoursesState', ''),
-  withHandlers({
-    setCourses: (state) => () => state.setCoursesState(state.getCourses),
-  })
-);
-      
-export const CourseItemList = coursesFromStorage(CourseItemListComponent);
+CourseItemList.propTypes = {
+    courses: PropTypes.array.isRequired
+}
