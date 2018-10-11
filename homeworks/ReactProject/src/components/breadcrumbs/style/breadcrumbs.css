@@ -1,0 +1,123 @@
+.breadcrumbs-wrapper {
+  position: absolute;
+  top: 5.4em;
+  left: 33em;
+}
+
+.breadcrumbs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  font-size: 0.9em;
+}
+
+.breadcrumbs__item {
+  display: block;
+  margin-right: 0;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.breadcrumbs__item:before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 12px solid #fff;
+  border-left: 8px solid #00bfff;
+  border-bottom: 12px solid #fff;
+}
+
+.breadcrumbs__item:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 0;
+  z-index: 4;
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 12px solid #00bfff;
+  border-left: 8px solid #fff;
+  border-bottom: 12px solid #00bfff;
+}
+
+.breadcrumbs__link {
+  display: block;
+  padding: 1px 1.5em;
+  color: #00bfff;
+  position: relative;
+  z-index: 3;
+  text-transform: capitalize;
+}
+
+.breadcrumbs__link:before {
+  content: "";
+  display: block;
+  background-color: #00bfff;
+  color: inherit;
+  border-radius: 50%;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scale(0.001, 0.001);
+}
+
+.breadcrumbs__link:focus {
+  outline: 0;
+  color: #fff;
+}
+
+.breadcrumbs__link:focus:before {
+  animation: effect_dylan 0.8s ease-out;
+}
+
+@keyframes effect_dylan {
+  50% {
+    transform: scale(1.5, 1.5);
+    opacity: 0;
+  }
+  99% {
+    transform: scale(0.001, 0.001);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.001, 0.001);
+    opacity: 1;
+  }
+}
+
+
+.breadcrumbs__link:hover {
+  text-decoration: none;
+  color: #0592c1;
+}
+
+.breadcrumbs__item:hover{
+  border-bottom-color: #fff;
+  border-top-color: #fff;
+  background-color: #fff;
+}
+
+.breadcrumbs__item:hover:before{
+  border-bottom-color: #fff;
+  border-top-color: #fff;
+}
+
+.breadcrumbs__item:hover:after{
+  border-left-color: #fff;
+}
+
+@media only screen and (max-width: 1366px) {
+  .breadcrumbs-wrapper {
+    top: 3.8em;
+    left: 24.4em;
+  }
+}
