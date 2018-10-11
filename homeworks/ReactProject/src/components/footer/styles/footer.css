@@ -1,11 +1,11 @@
 .footer {
-    padding: 1rem;
-    background-color: deepskyblue;
-    text-align: center;
-    margin-top: auto;
+  padding: 1rem;
+  background-color: deepskyblue;
+  text-align: center;
+  margin-top: auto;
 }
 
 .footer>h4 {
-    font-size: 0.85em;
-    color: white
+  font-size: 0.85em;
+  color: white
 }

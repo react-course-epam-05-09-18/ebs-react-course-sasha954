@@ -1,73 +1,76 @@
 import React from 'react'
-import {Button, Form} from 'reactstrap';
-import {FormElementGroup} from '../../../components/FormElementGroup';
+import PropTypes from 'prop-types';
+import { Button, Form, Alert } from 'reactstrap';
 
+import { FormElementGroup } from '../../../components/FormElementGroup';
 
+export class LoginForm extends React.Component { 
 
-export class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            login: this.props.login,
-            password: this.props.password,
-            errors: {},
-            submitForm : this.props.onSubmitForm,
-            onChangeHandler: this.props.onChangeHandler,
-        }
-        this.onBlur = this.onBlur.bind(this);
+  state = {
+    data: {
+      login: '',
+      password: ''
+    },
+    errors: {}
+  }
+
+  handleChange = ({ target }) => {
+    this.setState({ data: { ...this.state.data, [target.name]  : target.value }});
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = this.validate(this.state.data);
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0) {
+      this.setState({ loading: true });
+      this.props
+        .submit(this.state.data)
+        .catch(err => this.setState({ errors: { message : err.response.data.data } }));
     }
-    
-    onBlur(e) {
-        const isEmpty = e.target.value.length === 0;
-        
-        if(isEmpty) {
-            const errors = {
-                [e.target.name]: e.target.name
-            }
-            
-            this.setState({
-                errors: errors
-            })
-            
-        } else {
-             this.setState({
-                errors: {}
-            });
-        }
-        
-    }
-    
+  } 
 
-    render() {
-        const {errors, login, password, submitForm, onChangeHandler} = this.state;
-        return (<React.Fragment>
-            <Form onSubmit={submitForm}>
-                        <FormElementGroup 
-                        inputId="login"
-                        inputName="login" 
-                        inputType="text"
-                        inputPlaceholer="Enter your login!" 
-                        labelValue="Login*"
-                        value={login}
-                        errors={errors.login} 
-                        onBlur={this.onBlur}
-                        onChange={onChangeHandler}
-                        />
+  validate = data => {
+    const errors = {};
+    if (!data.login) errors.login = "Can't be blank";
+    if (!data.password) errors.password = "Can't be blank";
+    return errors;
+  };
 
-                        <FormElementGroup inputId='password' 
-                        inputName="password"  
-                        inputType="password" 
-                        inputPlaceholer="Enter your password!" 
-                        labelValue="Password*"
-                        value={password}
-                        errors={errors.password} 
-                        onBlur={this.onBlur}
-                        onChange={onChangeHandler}/>
-                        <Button className="custom-btn-color" type="submit">Sign in</Button>
-                    </Form>
-            </React.Fragment>
-        );
-    };
+render() {
+  const { data, errors } = this.state;
+
+  return (<React.Fragment>
+      <Form onSubmit={this.handleSubmit}>
+        {errors.message &&  <Alert color="danger">
+          {errors.message}
+        </Alert>}
+        <FormElementGroup 
+          inputId="login"
+          inputName="login" 
+          inputType="text"
+          inputPlaceholer="Enter your login!" 
+          labelValue="Login*"
+          value={data.login}
+          errors={errors.login} 
+          onChange={this.handleChange}
+          />
+
+        <FormElementGroup inputId='password' 
+          inputName="password"  
+          inputType="password" 
+          inputPlaceholer="Enter your password!" 
+          labelValue="Password*"
+          value={data.password}
+          errors={errors.password} 
+          onChange={this.handleChange}/>
+        <Button className="custom-btn-color" type="submit">Sign in</Button>
+      </Form>
+    </React.Fragment>
+  );
 }
+};
 
-
+LoginForm.propTypes = {
+  submit: PropTypes.func.isRequired
+};
